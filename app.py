@@ -32,7 +32,7 @@ def inference(model_inputs:dict) -> dict:
     instr = "Retrieve a scientific paper sentence that answers this question"
     queries = [f"{instr} [SEP] {p[0]}" for p in pairs]
     sents = [p[1] for p in pairs]
-    features = tokenizer(queries, sents, padding=True, truncation=True, return_tensors="pt")
+    features = tokenizer(queries, sents, padding=True, truncation=True, return_tensors="pt").to(device)
     with torch.no_grad():
         scores = model(**features).logits
         normalized_scores = [float(score[1]) for score in F.softmax(scores, dim=1)]
