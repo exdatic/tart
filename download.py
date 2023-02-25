@@ -2,12 +2,17 @@
 # It runs during container build time to get model weights built into the container
 
 # In this example: A Huggingface BERT model
+import sys
+from src.modeling_enc_t5 import EncT5ForSequenceClassification
+from src.tokenization_enc_t5 import EncT5Tokenizer
 
-from transformers import pipeline
+sys.path.append('tart/TART')
+
 
 def download_model():
-    # do a dry run of loading the huggingface model, which will download weights
-    pipeline('fill-mask', model='bert-base-uncased')
+    # load TART full and tokenizer
+    model = EncT5ForSequenceClassification.from_pretrained("facebook/tart-full-flan-t5-xl")
+    tokenizer = EncT5Tokenizer.from_pretrained("facebook/tart-full-flan-t5-xl")
 
 if __name__ == "__main__":
     download_model()
