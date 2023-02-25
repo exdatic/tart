@@ -3,10 +3,12 @@
 
 # In this example: A Huggingface BERT model
 import sys
+sys.path.append('tart/TART')
+
 from src.modeling_enc_t5 import EncT5ForSequenceClassification
 from src.tokenization_enc_t5 import EncT5Tokenizer
 
-sys.path.append('tart/TART')
+
 
 
 def download_model():
