@@ -1,11 +1,14 @@
-from transformers import pipeline
+import numpy as np
+import sys
 import torch
 import torch.nn.functional as F
-import numpy as np
-import torch
+from transformers import pipeline
+
+sys.path.append('tart/TART')
 
 from src.modeling_enc_t5 import EncT5ForSequenceClassification
 from src.tokenization_enc_t5 import EncT5Tokenizer
+
 
 # Init is ran on server startup
 # Load your model to GPU as a global variable here using the variable name "model"
