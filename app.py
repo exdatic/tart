@@ -15,8 +15,8 @@ from src.tokenization_enc_t5 import EncT5Tokenizer
 def init():
     global model
     global tokenizer
+    global device = "cuda" if torch.cuda.is_available() else "cpu"
     
-    device = "cuda" if torch.cuda.is_available() else "cpu"
     # load TART full and tokenizer
     model = EncT5ForSequenceClassification.from_pretrained("facebook/tart-full-flan-t5-xl").to(device)
     tokenizer = EncT5Tokenizer.from_pretrained("facebook/tart-full-flan-t5-xl")
@@ -26,6 +26,7 @@ def init():
 def inference(model_inputs:dict) -> dict:
     global model
     global tokenizer
+    global device
     # Parse out your arguments
     pairs = model_inputs.get('sentence_pairs')
     
