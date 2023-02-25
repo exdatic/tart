@@ -15,9 +15,9 @@ from src.tokenization_enc_t5 import EncT5Tokenizer
 def init():
     global model
     global tokenizer
-    global device = "cuda" if torch.cuda.is_available() else "cpu"
+    global device 
     
-    # load TART full and tokenizer
+    device = "cuda" if torch.cuda.is_available() else "cpu"
     model = EncT5ForSequenceClassification.from_pretrained("facebook/tart-full-flan-t5-xl").to(device)
     tokenizer = EncT5Tokenizer.from_pretrained("facebook/tart-full-flan-t5-xl")
 
